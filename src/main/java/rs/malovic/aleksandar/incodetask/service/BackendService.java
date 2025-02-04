@@ -96,8 +96,8 @@ public class BackendService {
                     FreeCompany::isActive,
                     Company::fromFreeCompany,
                     Source.FREE);
-            if (response == null) {
-                response = getCompanies(
+            if (response == null || response.companies.isEmpty()) {
+                ThirdPartyResponse newResponse = getCompanies(
                         "http://localhost:8080/premium-third-party?query={query}",
                         query,
                         new ParameterizedTypeReference<>() {
@@ -105,6 +105,9 @@ public class BackendService {
                         PremiumCompany::getIsActive,
                         Company::fromPremiumCompany,
                         Source.PREMIUM);
+                if (newResponse != null) {
+                    response = newResponse;
+                }
             }
             Result result;
             if (response == null) {
