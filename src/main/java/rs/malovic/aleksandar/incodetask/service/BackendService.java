@@ -102,7 +102,7 @@ public class BackendService {
                         query,
                         new ParameterizedTypeReference<>() {
                         },
-                        PremiumCompany::isActive,
+                        PremiumCompany::getIsActive,
                         Company::fromPremiumCompany,
                         Source.PREMIUM);
             }

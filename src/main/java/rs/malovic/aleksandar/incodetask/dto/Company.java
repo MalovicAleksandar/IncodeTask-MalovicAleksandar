@@ -67,6 +67,6 @@ public class Company {
     }
 
     public static Company fromPremiumCompany(PremiumCompany pc) {
-        return new Company(pc.getCompanyIdentificationNumber(), pc.getCompanyName(), pc.getRegistrationDate(), pc.getCompanyFullAddress(), pc.isActive());
+        return new Company(pc.getCompanyIdentificationNumber(), pc.getCompanyName(), pc.getRegistrationDate(), pc.getCompanyFullAddress(), pc.getIsActive());
     }
 }

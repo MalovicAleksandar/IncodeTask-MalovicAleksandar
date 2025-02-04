@@ -56,10 +56,6 @@ public class PremiumCompany {
         this.companyFullAddress = companyFullAddress;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
     public boolean getIsActive() {
         return isActive;
     }
