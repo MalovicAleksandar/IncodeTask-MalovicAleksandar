@@ -62,7 +62,6 @@ public class BackendService {
         Source source
     ) {
         try {
-            System.out.println("Calling " + source);
             List<T> companies = callThirdParty(url, query, type);
             return new ThirdPartyResponse(
                 companies.stream()
@@ -71,7 +70,6 @@ public class BackendService {
                     .collect(Collectors.toCollection(ArrayList::new)),
                 source);
         } catch (RestClientResponseException ex) {
-            System.out.println("error " + source);
             if (ex.getStatusCode().value() == 503) {
                 return null;
             } else {
@@ -108,8 +106,6 @@ public class BackendService {
                         Company::fromPremiumCompany,
                         Source.PREMIUM);
             }
-            System.out.println(response == null);
-            System.out.println(response != null ? response.companies.size() : null);
             Result result;
             if (response == null) {
                 result = new InfoResult("Third party services are down");
@@ -138,7 +134,6 @@ public class BackendService {
                 result
             );
         } catch (Exception ex) {
-            System.out.println(Arrays.toString(ex.getStackTrace()));
             throw new ResponseStatusException(HttpStatusCode.valueOf(500));
         }
     }
@@ -153,7 +148,6 @@ public class BackendService {
         try {
             return objectMapper.readValue(verification.getVerification(), VerificationResult.class);
         } catch (JsonProcessingException ex) {
-            System.out.println(ex.getMessage());
             throw new ResponseStatusException(HttpStatusCode.valueOf(500));
         }
     }
